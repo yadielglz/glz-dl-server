@@ -1,6 +1,7 @@
 {
   "name": "glz-dl-server",
-  "version": "0.0.0",
+  "version": "1.48.2",
+  "type": "module",
   "private": true,
   "scripts": {
     "test": "node --test test/*.test.cjs",
