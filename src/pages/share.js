@@ -1,4 +1,4 @@
-import { APP_VERSION, escAttr, escText, getMimeType, getPreviewType, humanSize } from "../config.js";
+import { APP_NAME, APP_VERSION, escAttr, escText, getMimeType, getPreviewType, humanSize } from "../config.js";
 import { PDF_PREVIEW_SCRIPT } from "../assets/pdf-viewer.js";
 
 export function publicSharePage({
@@ -237,10 +237,10 @@ export function publicSharePage({
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${safeFileName} — dl.glztech.com</title>
-<meta name="description" content="View or download ${escAttr(fileName)} (${formattedSize}) shared via dl.glztech.com.">
+<title>${safeFileName} — ${APP_NAME}</title>
+<meta name="description" content="View or download ${escAttr(fileName)} (${formattedSize}) shared via ${APP_NAME}.">
 <meta property="og:title" content="${escAttr(fileName)} (${formattedSize})">
-<meta property="og:description" content="View or download ${escAttr(fileName)} on dl.glztech.com.">
+<meta property="og:description" content="View or download ${escAttr(fileName)} on ${APP_NAME}.">
 <meta property="og:type" content="${metaType}">
 ${ogTags}
 <script>(function(){var t=localStorage.getItem('glz_theme');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)t='dark';if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
@@ -278,7 +278,7 @@ ${ogTags}
   </section>
 
   <footer class="share-foot">
-    <span>dl.glztech.com</span>
+    <span>${APP_NAME}</span>
     <span>v${APP_VERSION}</span>
   </footer>
 </main>

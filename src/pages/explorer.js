@@ -1,4 +1,4 @@
-import { APP_VERSION, escText } from "../config.js";
+import { APP_NAME, APP_VERSION, escText } from "../config.js";
 
 export function browserPage({ prefix = "", folders = [], files = [] }) {
   const folderTitle = prefix ? prefix.replace(/\/$/, "").split("/").pop() : "All Files";
@@ -14,8 +14,8 @@ export function browserPage({ prefix = "", folders = [], files = [] }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${escText(folderTitle)} — dl.glztech.com</title>
-<meta name="description" content="glztech Cloudflare R2 File Server">
+<title>${escText(folderTitle)} — ${APP_NAME}</title>
+<meta name="description" content="${APP_NAME} — File Storage &amp; Sharing">
 <script>(function(){var t=localStorage.getItem('glz_theme');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)t='dark';if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@ export function browserPage({ prefix = "", folders = [], files = [] }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </span>
         <span>
-          <div>dl.glztech.com</div>
-          <div class="brand-sub">R2 Storage</div>
+          <div>${APP_NAME}</div>
+          <div class="brand-sub">File Storage</div>
         </span>
       </a>
     </div>
@@ -80,7 +80,7 @@ export function browserPage({ prefix = "", folders = [], files = [] }) {
         <a class="btn btn-sm btn-ghost" href="/logout" title="Sign out">Sign out</a>
       </div>
       <div class="sidebar-footer-row">
-        <span class="ver-tag">glz-dl-server</span>
+        <span class="ver-tag">${APP_NAME}</span>
         <span class="ver-tag">v${APP_VERSION}</span>
       </div>
     </div>

@@ -4,7 +4,7 @@ export const APP_JS = `
 ${PDF_PREVIEW_SCRIPT}
 
 (function() {
-  const INIT = window.__GLZ_INIT__ || { prefix: '', folders: [], files: [], version: '1.48.2' };
+  const INIT = window.__GLZ_INIT__ || { prefix: '', folders: [], files: [], version: '1.48.3' };
   let PREFIX = INIT.prefix || '';
   let currentFolders = Array.isArray(INIT.folders) ? INIT.folders : [];
   let currentFiles = Array.isArray(INIT.files) ? INIT.files : [];
@@ -278,7 +278,7 @@ ${PDF_PREVIEW_SCRIPT}
     const upBtn = document.getElementById('btnUp');
     if (upBtn) upBtn.disabled = !PREFIX;
     const folderLabel = PREFIX ? PREFIX.replace(/\\/$/, '').split('/').pop() : 'All Files';
-    document.title = folderLabel + ' \\u2014 dl.glztech.com';
+    document.title = folderLabel + ' \\u2014 Glz Serve';
   }
 
   function renderBreadcrumbs() {
@@ -1031,7 +1031,7 @@ ${PDF_PREVIEW_SCRIPT}
       return;
     }
 
-    // Small file: try presigned R2 PUT, fallback to direct Worker PUT
+    // Small file: try presigned PUT, fallback to direct upload PUT
     try {
       const urlRes = await fetch('/api/upload-url', {
         method: 'POST',
@@ -1256,7 +1256,7 @@ ${PDF_PREVIEW_SCRIPT}
         '<div class="prop-list">' +
           '<div class="prop-row"><span class="prop-k">Folder</span><span class="prop-v">' + escText(name) + '</span></div>' +
           '<div class="prop-row"><span class="prop-k">Path</span><span class="prop-v" style="font-family:var(--font-mono)">/' + escText(keyOrPath || '') + '</span></div>' +
-          '<div class="prop-row"><span class="prop-k">Bucket</span><span class="prop-v" style="font-family:var(--font-mono)">glz-files (Cloudflare R2)</span></div>' +
+          '<div class="prop-row"><span class="prop-k">Storage</span><span class="prop-v">Glz Serve</span></div>' +
         '</div>' +
         '<div class="modal-foot" style="margin:14px -18px -16px"><button type="button" class="btn btn-primary" onclick="window.__glz.closeDialog()">Close</button></div>'
       );

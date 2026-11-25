@@ -1,4 +1,5 @@
-export const APP_VERSION = "1.48.2";
+export const APP_NAME = "Glz Serve";
+export const APP_VERSION = "1.48.3";
 export const COOKIE_NAME = "glz_session";
 export const SESSION_DAYS = 30;
 

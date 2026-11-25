@@ -1,4 +1,4 @@
-import { APP_VERSION, escAttr, escText } from "../config.js";
+import { APP_NAME, APP_VERSION, escAttr, escText } from "../config.js";
 
 const THEME_INIT_SCRIPT = `<script>(function(){var t=localStorage.getItem('glz_theme');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)t='dark';if(t)document.documentElement.setAttribute('data-theme',t);})();</script>`;
 
@@ -12,8 +12,8 @@ export function loginPage(error) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sign in — dl.glztech.com</title>
-<meta name="description" content="Sign in to glztech R2 File Server">
+<title>Sign in — ${APP_NAME}</title>
+<meta name="description" content="Sign in to ${APP_NAME}">
 ${THEME_INIT_SCRIPT}
 ${FONT_LINKS}
 <link rel="stylesheet" href="/assets/login.css?v=${APP_VERSION}">
@@ -25,8 +25,8 @@ ${FONT_LINKS}
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     </div>
     <div>
-      <h1>dl.glztech.com</h1>
-      <p>Cloudflare R2 File Storage</p>
+      <h1>${APP_NAME}</h1>
+      <p>File Storage &amp; Sharing</p>
     </div>
   </div>
   <form method="POST" action="/login">
@@ -38,7 +38,7 @@ ${FONT_LINKS}
     <button type="submit" class="btn-submit">Sign in</button>
   </form>
   <div class="auth-foot">
-    <span>glz-dl-server</span>
+    <span>${APP_NAME}</span>
     <span>v${APP_VERSION}</span>
   </div>
 </main>
@@ -78,7 +78,7 @@ ${FONT_LINKS}
     <button type="submit" class="btn-submit">Unlock file</button>
   </form>
   <div class="auth-foot">
-    <span>dl.glztech.com</span>
+    <span>${APP_NAME}</span>
     <span>v${APP_VERSION}</span>
   </div>
 </main>

@@ -7,7 +7,7 @@ test('rendered explorer HTML bootstrap and client JS bundle parse cleanly, inclu
   const { APP_JS } = await import('../src/assets/client.js');
   const { APP_VERSION } = await import('../src/config.js');
 
-  assert.equal(APP_VERSION, '1.48.2');
+  assert.equal(APP_VERSION, '1.48.3');
   new vm.Script(APP_JS);
 
   for (const prefix of ['', 'apps/tools/', 'a\'" & #/日本語/', '</script>/']) {
@@ -108,3 +108,28 @@ test('scrolling, cancellation and multi-touch cancel pending activation', async 
     assert.equal(h.timers.size, 0);
   }
 });
+
+test('visual branding uses Glz Serve and omits Cloudflare/R2 mentions', async () => {
+  const { browserPage } = await import('../src/pages/explorer.js');
+  const { loginPage, sharePasswordPage } = await import('../src/pages/login.js');
+  const { publicSharePage } = await import('../src/pages/share.js');
+  const { APP_JS } = await import('../src/assets/client.js');
+
+  const surfaces = [
+    browserPage({ prefix: '', folders: [], files: [] }),
+    loginPage(''),
+    sharePasswordPage({ code: 'abc123', fileName: 'demo.pdf', error: '' }),
+    publicSharePage({ code: 'abc123', key: 'demo.txt', size: 128, origin: 'https://example.com' }),
+    APP_JS,
+  ];
+
+  for (const content of surfaces) {
+    const cleaned = content.replace(/https:\/\/cdnjs\.cloudflare\.com\/[^\s'"]+/g, '');
+    assert.ok(cleaned.includes('Glz Serve'), 'expected Glz Serve branding');
+    assert.doesNotMatch(cleaned, /cloudflare/i);
+    assert.doesNotMatch(cleaned, /\bR2\b/);
+    assert.doesNotMatch(cleaned, /glz-dl-server/i);
+    assert.doesNotMatch(cleaned, /glz-files/i);
+  }
+});
+
